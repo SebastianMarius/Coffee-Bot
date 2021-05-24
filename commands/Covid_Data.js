@@ -128,7 +128,7 @@ module.exports = {
                     'https://i.imgur.com/10aUp1o.jpg'
                 );
             const channelu = client.channels.cache.find(
-                (channel) => channel.name === 'general'
+                (channel) => channel.name === 'covid-updates'
             );
 
             channelu.send(showCovidData);
