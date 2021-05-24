@@ -39,18 +39,21 @@ client.on('message', (msg) => {
     switch (command) {
         case 'ping':
             client.commands.get('ping').execute(msg);
+            break;
         case 'kick':
             if (msg.member.hasPermission(['KICK-MEMBERS', 'BAN_MEMBERS'])) {
                 client.commands.get('count_members').execute(msg);
             }
+            break;
         case 'get coffee':
             client.commands.get('get_coffee').execute(msg, client);
-
+            break;
         case 'get activity':
             client.commands.get('get_random_activity').execute(msg);
-
+            break;
         case 'help':
             client.commands.get('help').execute(msg);
+            break;
     }
 
     if (command.includes('choose')) {
