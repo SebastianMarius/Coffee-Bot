@@ -18,7 +18,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const MIN_INTERVAL = 1000 * 60 * 60 * 24;
+const MIN_INTERVAL = 1000 * 10;
 setInterval(function () {
     client.commands.get('covid_data').execute(client);
 }, MIN_INTERVAL);
