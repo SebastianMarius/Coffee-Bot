@@ -28,7 +28,14 @@ client.on('ready', () => {
 });
 
 client.on('message', (msg) => {
-    if (!msg.content.startsWith(prefix) || msg.author.bot) {
+    // we check if the message doesn't contain bot preffix, if the author isn't another bot
+    // if it doesn't contain any user mention, we need to don't return anything if these are true
+    // if message contain user mentions, we need to call 'on_tag_user' command, which send users private message when they are mentioned
+
+    if (
+        (!msg.content.includes('@') && !msg.content.startsWith(prefix)) ||
+        msg.author.bot
+    ) {
         return;
     }
 
@@ -62,11 +69,17 @@ client.on('message', (msg) => {
         client.commands.get('check_similar').execute(msg, client, command);
     } else if (command.startsWith('age')) {
         client.commands.get('get_age_by_name').execute(msg);
+    } else if (msg.mentions.members.first()) {
+        client.commands.get('on_tag_user').execute(msg);
     }
 });
 
 client.on('guildMemberAdd', (member) => {
     client.commands.get('Welcome').execute(member, client);
+});
+
+client.on('messageDelete', (msg) => {
+    client.commands.get('User_delete_msg').execute(msg);
 });
 
 client.login(process.env.BOT_TOKEN);
