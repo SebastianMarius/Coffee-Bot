@@ -18,9 +18,12 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const MIN_INTERVAL = 1000 * 60 * 60 * 24;
+const MIN_INTERVAL = 1000 * 60 * 60;
 setInterval(function () {
-    client.commands.get('covid_data').execute(client);
+    const date = new Date();
+    if (date.getHours() === 17) {
+        client.commands.get('covid_data').execute(client);
+    }
 }, MIN_INTERVAL);
 
 client.on('ready', () => {
@@ -47,13 +50,10 @@ client.on('message', (msg) => {
         case 'ping':
             client.commands.get('ping').execute(msg);
             break;
-        case 'kick':
-            if (msg.member.hasPermission(['KICK-MEMBERS', 'BAN_MEMBERS'])) {
-                client.commands.get('count_members').execute(msg);
-            }
-            break;
+
         case 'get coffee':
             client.commands.get('get_coffee').execute(msg, client);
+
             break;
         case 'get activity':
             client.commands.get('get_random_activity').execute(msg);
@@ -61,12 +61,21 @@ client.on('message', (msg) => {
         case 'help':
             client.commands.get('help').execute(msg);
             break;
+        case 'count':
+            client.commands.get('count_members').execute(msg);
+            break;
     }
 
     if (command.includes('choose')) {
         client.commands.get('choose').execute(msg, client, command);
     } else if (command.startsWith('s')) {
         client.commands.get('check_similar').execute(msg, client, command);
+    } else if (command.startsWith('kick')) {
+        console.log('KICKKK');
+        if (msg.member.hasPermission(['KICK-MEMBERS', 'BAN_MEMBERS'])) {
+            console.log('mere');
+            client.commands.get('Kick').execute(msg);
+        }
     } else if (command.startsWith('age')) {
         client.commands.get('get_age_by_name').execute(msg);
     } else if (msg.mentions.members.first()) {

@@ -46,15 +46,6 @@ module.exports = {
             newRecover = cases.NewRecovered;
             testProcent = cases.Test_Percentage;
 
-            var compareYest =
-                yesterdayActivee > newCase
-                    ? yesterdayActivee - newCase
-                    : newCase - yesterdayActivee;
-            if (yesterdayActivee > newCase) {
-                textToSend = ` ${compareYest} cases less than yesterday`;
-            } else {
-                textToSend = ` ${compareYest} cases more than yesterday`;
-            }
             const showCovidData = new Discord.MessageEmbed()
                 .setColor('#0099ff')
                 .setTitle('Today Romania covid informations')
@@ -64,7 +55,10 @@ module.exports = {
                 )
                 .setThumbnail('https://i.imgur.com/QpnAaSJ.jpg')
                 .addField('\u200B', '\u200B')
-                .addField(`More or less than yesterday?`, `${textToSend}`)
+                .addField(
+                    `More or less than yesterday?`,
+                    `How i am supposed to know that? use your brain bro and calculate :)`
+                )
                 .addField('\u200B', '\u200B')
                 .addFields(
                     {
