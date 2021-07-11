@@ -13,7 +13,8 @@ module.exports = {
                 var responseIndex =
                     Math.floor(Math.random() * 10 + 1) % allResponses;
                 var responseFinal = response.data[responseIndex];
-
+                
+                msg.channel.send("KICK");
                 msg.channel.send(
                     ':wave: ' +
                         member.displayName +
