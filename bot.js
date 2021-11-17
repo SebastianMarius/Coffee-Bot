@@ -21,7 +21,7 @@ for (const file of commandFiles) {
 const MIN_INTERVAL = 1000 * 60 * 60;
 setInterval(function () {
     const date = new Date();
-    if (date.getHours() === 17) {
+    if (date.getHours() === 15) {
         client.commands.get('covid_data').execute(client);
     }
 }, MIN_INTERVAL);
