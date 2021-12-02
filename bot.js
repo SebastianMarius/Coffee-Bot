@@ -18,7 +18,7 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const MIN_INTERVAL = 60;
+const MIN_INTERVAL = 1000 * 60 * 60;
 setInterval(function () {
     const date = new Date();
     if (date.getHours() === 16) {
