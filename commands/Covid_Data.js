@@ -122,7 +122,7 @@ module.exports = {
                     'https://i.imgur.com/10aUp1o.jpg'
                 );
             const channelu = client.channels.cache.find(
-                (channel) => channel.id === '916098740673183806'
+                (channel) => channel.id === '846435376867967016'
             );
 
             channelu.send(showCovidData);
