@@ -27,9 +27,9 @@ let testProcent;
 let population;
 
 module.exports = {
-    name: 'covid_data',
-    description: 'Send every 24h covid data',
-    execute(client) {
+    name: 'get_covid_data',
+    description: 'When user ask for covid data, send covid data',
+    execute(msg) {
         // console.log('====');
 
         reqVaccine.end(function (res) {
@@ -124,12 +124,12 @@ module.exports = {
                     'Stay safe and wear the mask ',
                     'https://i.imgur.com/10aUp1o.jpg'
                 );
-            const channelu = client.channels.cache.find(
-                (channel) => channel.id === '846435376867967016'
-            );
 
-            channelu.send(showCovidData);
-            // channelu.send('test');
+            if ((cases = res.body.response[0])) {
+                msg.channel.send(showCovidData);
+            } else {
+                return;
+            }
         });
     },
 };

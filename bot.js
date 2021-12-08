@@ -18,11 +18,12 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
-const MIN_INTERVAL = 1000 * 60 * 60;
+const MIN_INTERVAL = 60 * 60 * 1000;
 setInterval(function () {
     const date = new Date();
     if (date.getHours() === 17) {
         client.commands.get('covid_data').execute(client);
+        console.log('test');
     }
 }, MIN_INTERVAL);
 
@@ -63,6 +64,9 @@ client.on('message', (msg) => {
             break;
         case 'count':
             client.commands.get('count_members').execute(msg);
+            break;
+        case 'data_please':
+            client.commands.get('get_covid_data').execute(msg);
             break;
     }
 
