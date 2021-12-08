@@ -128,6 +128,7 @@ module.exports = {
             if ((cases = res.body.response[0])) {
                 msg.channel.send(showCovidData);
             } else {
+                msg.channel.send('Sorry, i do not have any data for today yet');
                 return;
             }
         });
