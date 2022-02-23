@@ -82,17 +82,11 @@ client.on('message', (msg) => {
         }
     } else if (command.startsWith('age')) {
         client.commands.get('get_age_by_name').execute(msg);
-    } else if (msg.mentions.members.first()) {
-        client.commands.get('on_tag_user').execute(msg);
     }
 });
 
 client.on('guildMemberAdd', (member) => {
     client.commands.get('Welcome').execute(member, client);
-});
-
-client.on('messageDelete', (msg) => {
-    client.commands.get('User_delete_msg').execute(msg);
 });
 
 client.login(process.env.BOT_TOKEN);
